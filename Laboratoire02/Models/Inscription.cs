@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Laboratoire02.Models
 {
-    internal class Inscription
+    public class Inscription
     {
         public string Nom { get; set; }
         public string Telephone { get; set; }

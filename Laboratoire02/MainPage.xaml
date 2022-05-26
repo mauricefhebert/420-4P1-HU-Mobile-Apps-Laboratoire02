@@ -3,18 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Laboratoire02.MainPage">
 
-    <StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label VerticalOptions="Center" HorizontalOptions="Start" Text="Nom complet:"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Keyboard="Default"></Entry> 
+    <StackLayout Margin="10">
+        <Grid x:Name="form">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label FontAttributes="Bold"  Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="Nom complet:"></Label>
+            <Entry x:Name="txt_Nom" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" Keyboard="Default"></Entry>
+            <Label FontAttributes="Bold" Grid.Row="1" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start"  Text="Telephone:"></Label>
+            <Entry x:Name="txt_Telephone" Grid.Row="1" Grid.Column="1" HorizontalOptions="FillAndExpand" Keyboard="Telephone"></Entry>
+            <Label FontAttributes="Bold" Grid.Row="2" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start" Text="Mot de passe:"></Label>
+            <Entry x:Name="txt_MotPasse" Grid.Row="2" Grid.Column="1" HorizontalOptions="FillAndExpand" Keyboard="Default" IsPassword="true"></Entry>
+        </Grid>
+        <ScrollView x:Name="condition">
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span FontAttributes="Bold" Text="Conditions d'utilisation.&#10;"></Span>
+                            <Span Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus lobortis est ut iaculis. Duis ac adipiscing dolor, vel interdum libero. In porttitor sagittis massa commodo tristique. Nam quis arcu arcu. Nam et condimentum est. Aliquam lacus velit, accumsan et est vitae, rhoncus pretium risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus cursus odio et faucibus. Mauris luctus dapibus neque, a blandit leo lobortis eu.&#10;&#10;"></Span>
+                            <Span Text="Morbi at nibh quis purus ornare pellentesque. Morbi pretium tincidunt tortor, ac suscipit elit tincidunt sit amet. Duis vitae dui commodo, iaculis erat eget, placerat lorem. Integer ultrices vel metus sed auctor. Phasellus hendrerit orci sit amet congue tincidunt. Vivamus eget sem vitae tellus interdum mollis nec quis orci. Donec varius fermentum massa, nec hendrerit lectus venenatis vel. Maecenas sed cursus felis, vitae ornare nisi. Curabitur porta accumsan libero id fringilla. Aliquam vehicula, nulla at pharetra vestibulum, nisi ligula sagittis nisl, porta viverra libero leo nec risus. Cras cursus libero metus, at pellentesque nisl commodo ut. Proin mattis est ligula, quis interdum nisi tincidunt at. Pellentesque consectetur dictum quam.&#10;&#10;"></Span>
+                            <Span Text="Duis sodales tortor tellus, mollis suscipit ligula pellentesque non. Etiam fermentum magna non nibh congue, eu tincidunt sapien pellentesque. Vivamus porttitor malesuada semper. Nam neque elit, pellentesque quis risus at, semper scelerisque ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse sit amet magna massa. Nulla facilisi. Quisque ultricies massa ipsum, consequat molestie est elementum ac. Ut non elit fermentum, sagittis erat id, eleifend dui. Vestibulum fermentum felis eget metus suscipit blandit. Suspendisse vitae tristique sem, sed porta magna. Pellentesque non vehicula lorem, et tempus mauris. Donec gravida vulputate risus, elementum tincidunt nisl consequat ac. Sed suscipit scelerisque elementum. Donec ut imperdiet sem.&#10;&#10;"></Span>
+                            <Span Text="Fusce vitae iaculis tellus. Nulla pretium tempor velit, at porta purus elementum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut suscipit turpis id nulla feugiat, ut egestas nibh accumsan. Quisque in auctor nisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent scelerisque tincidunt facilisis.&#10;&#10;"></Span>
+                            <Span Text="Curabitur blandit venenatis urna, id dignissim erat elementum nec. Mauris lacinia mi quis ipsum semper tristique sit amet eget velit. Nullam lacus massa, sodales vitae tellus sit amet, lobortis commodo eros. Integer tristique purus vel augue hendrerit fermentum. Pellentesque dapibus egestas dui, quis tincidunt ipsum pretium vitae. Nam mollis, turpis vel varius malesuada, purus arcu aliquam lorem, sit amet lacinia eros lacus sit amet nibh. Pellentesque justo metus, ultrices sed risus ac, tempus scelerisque nulla. Praesent bibendum bibendum risus. Suspendisse potenti. Vivamus ac metus eget tortor luctus eleifend."></Span>
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </ScrollView>
+        <StackLayout>
+        <StackLayout x:Name="section_condition" Orientation="Horizontal">
+            <Label Text="J'accepte les conditions"></Label>
+            <Switch x:Name="switch_condition" HorizontalOptions="EndAndExpand" Toggled="switch_condition_Toggled"></Switch>
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label VerticalOptions="Center" Margin="0 18 0 0" HorizontalOptions="Start"  Text="Telephone:"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Keyboard="Telephone"></Entry>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label VerticalOptions="Center" HorizontalOptions="Start" Text="Mot de passe:"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Keyboard="Default" IsPassword="true"></Entry>
+            <Button x:Name="btn_inscription" Text="Inscription" IsEnabled="False" Clicked="btn_inscription_Clicked"></Button>
         </StackLayout>
     </StackLayout>
 
