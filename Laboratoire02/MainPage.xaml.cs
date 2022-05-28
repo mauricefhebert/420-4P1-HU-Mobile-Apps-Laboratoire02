@@ -40,7 +40,7 @@ namespace Laboratoire02
             return valid;
         }
 
-        private void btn_inscription_Clicked(object sender, EventArgs e)
+        private async void btn_inscription_Clicked(object sender, EventArgs e)
         {
             if(formValidation())
             {
@@ -51,17 +51,16 @@ namespace Laboratoire02
                     MotPasse = txt_MotPasse.Text,
                 };
                 inscriptions.Add(inscription);
-                var response = DisplayAlert("Info", "Valide", "Ok", "Fermer");
-                if (response.Result)
+                var res = await DisplayAlert("Confirmation", "Inscription avec success", "Ok", "Fermer");
+                if(res || !res)
                 {
-                    section_condition.IsVisible = false;
-                    condition.IsVisible = false;
-
+                condition.IsVisible = false;
+                section_condition.IsVisible = false;
                 }
             }
             else
             {
-                DisplayAlert("Info", "Invalide", "Ok", "Fermer");
+                await DisplayAlert("Erreur", "Veuillez remplir tous les champs", "Ok", "Fermer");
             }
         }
     }
