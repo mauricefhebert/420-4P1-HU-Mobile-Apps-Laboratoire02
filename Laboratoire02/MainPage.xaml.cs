@@ -1,6 +1,7 @@
 ﻿using Laboratoire02.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,24 +12,26 @@ namespace Laboratoire02
 {
     public partial class MainPage : ContentPage
     {
-        public IList<Inscription> inscriptions = new List<Inscription>(8);
+        public ObservableCollection<Inscription> inscriptions = new ObservableCollection<Inscription>();
+        public ObservableCollection<Inscription> Inscriptions { get { return inscriptions; } }
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = this;
         }
 
         private void switch_condition_Toggled(object sender, ToggledEventArgs e)
         {
-            if(e.Value) btn_inscription.IsEnabled = true;
+            if (e.Value) btn_inscription.IsEnabled = true;
             else btn_inscription.IsEnabled = false;
         }
 
         public bool formValidation()
         {
             bool valid = false;
-            foreach(var entry in form.Children)
+            foreach (var entry in form.Children)
             {
-                if(entry.GetType() == typeof(Entry))
+                if (entry.GetType() == typeof(Entry))
                 {
                     if ((entry as Entry).Text == null)
                     {
@@ -42,7 +45,7 @@ namespace Laboratoire02
 
         private async void btn_inscription_Clicked(object sender, EventArgs e)
         {
-            if(formValidation())
+            if (formValidation())
             {
                 var inscription = new Inscription()
                 {
@@ -52,16 +55,22 @@ namespace Laboratoire02
                 };
                 inscriptions.Add(inscription);
                 var res = await DisplayAlert("Confirmation", "Inscription avec success", "Ok", "Fermer");
-                if(res || !res)
+                if (res || !res)
                 {
-                condition.IsVisible = false;
-                section_condition.IsVisible = false;
+                    condition.IsVisible = false;
+                    section_condition.IsVisible = false;
+                    btn_voir_liste.IsVisible = true;
                 }
             }
             else
             {
                 await DisplayAlert("Erreur", "Veuillez remplir tous les champs", "Ok", "Fermer");
             }
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            ListContainer.IsVisible = true;
         }
     }
 }
